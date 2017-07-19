@@ -1,0 +1,1758 @@
+
+<html itemscope="" itemtype="http://schema.org/QAPage"><head>
+
+    <title>How to extract text of paragraph from html using Jsoup? - Stack Overflow</title>
+    <link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="How to extract text of paragraph from html using Jsoup?">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.">
+    <meta property="og:url" content="https://stackoverflow.com/questions/17161243/how-to-extract-text-of-paragraph-from-html-using-jsoup">
+    <link rel="canonical" href="https://stackoverflow.com/questions/17161243/how-to-extract-text-of-paragraph-from-html-using-jsoup">
+
+
+
+    <script type="text/javascript" async="" src="https://engine.adzerk.net/ados?t=1500478375549&amp;request={&quot;Placements&quot;:[{&quot;A&quot;:22,&quot;S&quot;:8277,&quot;D&quot;:&quot;adzerk436368561&quot;,&quot;AT&quot;:4,&quot;Z&quot;:[43]},{&quot;A&quot;:22,&quot;S&quot;:8277,&quot;D&quot;:&quot;adzerk1945578257&quot;,&quot;AT&quot;:4,&quot;Z&quot;:[44]},{&quot;A&quot;:22,&quot;S&quot;:8277,&quot;D&quot;:&quot;adzerk345503651&quot;,&quot;ATA&quot;:[5,17,2221,1129,43],&quot;Z&quot;:[45]}],&quot;Keywords&quot;:&quot;jsoup%2Cx-user-registered%2Cx-cross-site-unix.stackexchange.com&quot;,&quot;Referrer&quot;:&quot;https%3A%2F%2Fwww.google.pl%2F&quot;,&quot;IsAsync&quot;:true}"></script><script async="" src="https://secure.quantserve.com/quant.js"></script><script async="" src="https://sb.scorecardresearch.com/beacon.js"></script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://static.adzerk.net/ados.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.sstatic.net/Js/stub.en.js?v=e8dfd911394a"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Sites/stackoverflow/all.css?v=868c2539f682">
+
+    <link rel="alternate" type="application/atom+xml" title="Feed for question 'How to extract text of paragraph from html using Jsoup?'" href="/feeds/question/17161243">
+    <meta name="twitter:app:country" content="US">
+    <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+    <meta name="twitter:app:id:iphone" content="871299723">
+    <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/17161243/how-to-extract-text-of-paragraph-from-html-using-jsoup">
+    <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+    <meta name="twitter:app:id:ipad" content="871299723">
+    <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/17161243/how-to-extract-text-of-paragraph-from-html-using-jsoup">
+    <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+    <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/17161243/how-to-extract-text-of-paragraph-from-html-using-jsoup">
+    <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+    <script>
+
+        StackExchange.ready(function () {
+
+            StackExchange.using("snippets", function () {
+                StackExchange.snippets.initSnippetRenderer();
+            });
+
+
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+
+            StackExchange.question.init({canOpenBounty:true,votesCast:[],totalCommentCount:2,shownCommentCount:2,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:17161243});
+
+            styleCode();
+
+            StackExchange.realtime.subscribeToQuestion('1', '17161243');
+            StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text', true); });
+
+        });
+    </script>
+
+
+    <script>
+        StackExchange.ready(function () {
+            StackExchange.realtime.init('wss://qa.sockets.stackexchange.com');
+            StackExchange.realtime.subscribeToReputationNotifications('1');
+            StackExchange.realtime.subscribeToTopBarNotifications('1');
+        });
+    </script>
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","serverTime":1500478372,"routeName":"Questions/Show","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableInsertDocLinkDialog":true,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"09076c858c4b8010cdb68cbd6ae02e86","rep":151,"isRegistered":true,"userType":3,"userId":4430543,"accountId":4859248,"gravatar":"<div class=\"gravatar-wrapper-32\"><img src=\"https://www.gravatar.com/avatar/c47cb0587f062e6a5d5662f26afd9baa?s=32&amp;d=identicon&amp;r=PG\" alt=\"\" width=\"32\" height=\"32\"></div>","profileUrl":"https://stackoverflow.com/users/4430543/gauee","canSeeDeletedPosts":false,"canSeeNewHeaderDesign":true,"ab":{"inline_signup_hero":{"v":"b","g":2}}},"realtime":{"newest":false,"active":false,"tagged":true,"staleDisconnectIntervalInHours":0,"workerIframeDomain":"https://cdn.sstatic.net"},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableNewLinkInsertDialog":true,"enableImgurHttps":true,"forceHttpsImages":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"cc04c3e5d4a4","js/moderator.en.js":"8a3680841e92","js/full-anon.en.js":"8301d9dfbd2d","js/full.en.js":"87003df50580","js/wmd.en.js":"48daadf6937c","js/third-party/jquery.autocomplete.min.js":"d3b8fa7fdf74","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"7ddcc5ef262c","js/help.en.js":"42b954c86bdb","js/tageditor.en.js":"235a2acc7d79","js/tageditornew.en.js":"ed03530ae888","js/inline-tag-editing.en.js":"3e63a01fd39b","js/revisions.en.js":"2faaeaae2529","js/review.en.js":"3043ddd14cb3","js/tagsuggestions.en.js":"b278f9a0b23b","js/post-validation.en.js":"bb499704d77b","js/explore-qlist.en.js":"d33e3ab2f2e0","js/events.en.js":"f28ce1d44ae7","js/keyboard-shortcuts.en.js":"672b95bef808","js/external-editor.en.js":"ae2d26085224","js/adops.en.js":"9a6a7812a212","js/external-editor.en.js":"ae2d26085224","js/snippet-javascript.en.js":"ca40b13b0854","js/snippet-javascript-codemirror.en.js":"a6d26f7c9e52"});
+        StackExchange.using("gps", function() {
+            StackExchange.gps.init(true);
+        });
+    </script>
+
+    <noscript id="noscript-css">&lt;style type="text/css"&gt;body,.so-header{margin-top:1.9em}&lt;/style&gt;</noscript>
+    <script async="" src="https://cdn.sstatic.net/Js/full.en.js?v=87003df50580"></script><script async="" src="https://cdn.sstatic.net/Js/snippet-javascript.en.js?v=ca40b13b0854"></script><script async="" src="https://cdn.sstatic.net/Js/post-validation.en.js?v=bb499704d77b"></script><script async="" src="https://cdn.sstatic.net/Js/prettify-full.en.js?v=cc04c3e5d4a4"></script><script async="" src="https://cdn.sstatic.net/Js/external-editor.en.js?v=ae2d26085224"></script><script async="" src="https://cdn.sstatic.net/Js/wmd.en.js?v=48daadf6937c"></script><script type="text/javascript" src="https://s.zkcdn.net/Extensions/adFeedback.js"></script><link rel="stylesheet" href="https://s.zkcdn.net/Extensions/adFeedback.css"><style type="text/css"> .wmd-snippet-button span { background-position: 0 0; } .wmd-snippet-button:hover span { background-position: 0 -40px; }</style><link rel="stylesheet" href="https://cdn.sstatic.net/clc/styles/clc/jobs-multi.min.css?v=de6d1ca1e547" type="text/css"></head>
+<body class="question-page new-topbar">
+<script>(function () { var old = $.fn.contents; $.fn.contents = function () { try { return old.apply(this, arguments); } catch (e) { return $([]); } } })()</script>
+
+
+<div id="notify-container"></div>
+<div id="custom-header"></div>
+
+
+<header class="so-header js-so-header _fixed">
+    <div class="-container">
+        <div class="-main">
+            <a href="https://stackoverflow.com" class="-logo js-gps-track _glyph" data-gps-track="top_nav.click({is_current:false, location:2, destination:8})">
+
+                <span class="-img">Stack Overflow</span>
+            </a>
+
+            <nav class="navigation" role="navigation" aria-label="site navigation">
+                <ol class="-list">
+                    <li class="-item _current">
+                        <a id="nav-questions" href="/questions" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</a>
+                    </li>
+
+                    <li class="-item">
+                        <a id="nav-jobs" href="/jobs?med=site-ui&amp;ref=jobs-tab" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Developer Jobs</a>
+                    </li>
+                    <li class="-item">
+                        <a id="nav-docs" href="/documentation" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:7})">Documentation <small class="beta-badge">beta</small></a>
+                    </li>
+                    <li class="-item">
+                        <a id="nav-tags" href="/tags" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</a>
+                    </li>
+
+                    <li class="-item">
+                        <a id="nav-users" href="/users" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</a>
+                    </li>
+
+                </ol>
+            </nav>
+
+            <form id="search" action="/search" method="get" class="searchbar" autocomplete="off" role="search">
+                <svg role="icon" class="svg-icon iconSearch" width="18" height="18" viewBox="0 0 18 18"><path d="M12.864 11.321L18 16.5 16.5 18l-5.178-5.136v-.357a7 7 0 1 1 1.186-1.186h.356zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg>
+                <input name="q" type="text" placeholder="Search..." value="" tabindex="1" autocomplete="off" maxlength="240" class="f-input js-search-field">
+                <button type="submit" class="btn js-search-submit">
+                    <svg role="icon" class="svg-icon iconSearch" width="18" height="18" viewBox="0 0 18 18"><path d="M12.864 11.321L18 16.5 16.5 18l-5.178-5.136v-.357a7 7 0 1 1 1.186-1.186h.356zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg>
+                </button>
+            </form>
+
+        </div>
+
+
+
+
+
+        <div class="-actions">
+            <a href="/users/4430543/gauee" class="my-profile js-gps-track" data-gps-track="profile_summary.click()">
+                <div class="gravatar-wrapper-24" title="gauee"><img src="https://www.gravatar.com/avatar/c47cb0587f062e6a5d5662f26afd9baa?s=48&amp;d=identicon&amp;r=PG" alt="" width="24" height="24" class="-avatar js-avatar-me"></div>
+
+
+                <div class="-rep js-header-rep" title="your reputation: 151">151</div>
+
+                <div class="-badges">
+                    <span title="8 bronze badges"><span class="badge3">●</span><span class="badgecount">8</span></span>
+                </div>
+            </a>
+            <nav class="secondary-nav">
+                <div class="-dialog-container js-topbar-dialog-corral">
+
+
+                    <div class="topbar-dialog siteSwitcher-dialog dno">
+                        <div class="header">
+                            <h3><a href="https://stackoverflow.com">current community</a>
+                            </h3>
+                        </div>
+                        <div class="modal-content current-site-container">
+                            <ul class="current-site">
+                                <li>
+                                    <div class="related-links">
+                                        <a href="https://stackoverflow.com/help" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })">help</a>
+                                        <a href="https://chat.stackoverflow.com" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                                        <a href="https://stackoverflow.com/users/logout" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:8 })">log out</a>
+                                    </div>
+
+                                    <a href="https://stackoverflow.com" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+                                        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+                                        Stack Overflow
+                                    </a>
+
+                                </li>
+                                <li class="related-site">
+                                    <div class="L-shaped-icon-container">
+                                        <span class="L-shaped-icon"></span>
+                                    </div>
+
+
+                                    <a href="https://meta.stackoverflow.com" class="site-link js-gps-track" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+                                        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+                                        Meta Stack Overflow
+                                    </a>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="header" id="your-communities-header">
+                            <h3>
+                                <a href="https://stackexchange.com/users/4859248/?tab=accounts">your communities</a>
+                            </h3>
+
+                            <a href="#" id="edit-pinned-sites">edit</a>
+                            <a href="#" id="cancel-pinned-sites" style="display: none;">cancel</a>
+                        </div>
+                        <div class="modal-content" id="your-communities-section">
+
+                            <ul class="my-sites">
+                                <li>
+
+                                    <a href="https://stackoverflow.com" class="site-link js-gps-track" data-id="1" data-gps-track="site.switch({ target_site:1, item_type:3 }),site_switcher.click({ item_type:1 })">
+                                        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+                                        Stack Overflow
+                                        <span class="rep-score">151</span>
+                                    </a>
+
+                                </li>
+                                <li>
+
+                                    <a href="https://askubuntu.com" class="site-link js-gps-track" data-id="89" data-gps-track="site.switch({ target_site:89, item_type:3 }),site_switcher.click({ item_type:1 })">
+                                        <div class="site-icon favicon favicon-askubuntu" title="Ask Ubuntu"></div>
+                                        Ask Ubuntu
+                                        <span class="rep-score">1</span>
+                                    </a>
+
+                                </li>
+                            </ul>
+                            <div class="pinned-site-editor-container" style="display: none;">
+                                <input id="js-site-search-txt" type="text" class="site-filter-input" value="" placeholder="Add a Stack Exchange community">
+                                <input type="submit" id="pin-site-btn" value="Add" disabled="disabled">
+                                <ul class="js-found-sites found-sites"></ul>
+                                <ul class="pinned-site-list sortable" data-custom-list="False">
+                                </ul>
+                                <input type="submit" value="Save" id="save-pinned-sites-btn" disabled="disabled">
+                                <a href="#" id="reset-pinned-sites">reset to default list</a>
+                            </div>
+                        </div>
+
+                        <div class="header">
+                            <h3><a href="https://stackexchange.com/sites">more stack exchange communities</a>
+                            </h3>
+                            <a href="https://stackoverflow.blog" class="fr">company blog</a>
+                        </div>
+                        <div class="modal-content">
+                            <div class="child-content"></div>
+                        </div>
+                    </div>
+                    <div class="topbar-dialog help-dialog js-help-dialog dno">
+                        <div class="modal-content">
+                            <ul>
+                                <li>
+                                    <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                                        Tour
+                                        <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                                        Help Center
+                                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://meta.stackoverflow.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                        Meta
+                                        <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                        About Us
+                                        <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                        Business
+                                        <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <ol class="-list">
+                    <li class="-item">
+                        <a href="#" class="-link js-inbox-button" title="Recent inbox messages">
+                            <svg role="icon" class="svg-icon iconInbox" width="20" height="18" viewBox="0 0 20 18"><path d="M15.19 1H4.63a1.92 1.92 0 0 0-1.85 1.35L0 10.79V15a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4.21l-2.87-8.44A2 2 0 0 0 15.19 1zm-.28 10l-2 2h-6l-2-2H1.96L4.4 3.68A1 1 0 0 1 5.35 3h9.12a1 1 0 0 1 .95.68L17.86 11h-2.95z"></path></svg>
+                            <span class="indicator-badge js-unread-count _important" style="display: none;"></span>
+                        </a>
+                    </li>
+                    <li class="-item">
+                        <a href="#" class="-link js-achievements-button" title="Recent achievements: reputation, badges, and privileges earned" data-unread-class="_highlighted-positive">
+                            <svg role="icon" class="svg-icon iconAchievements" width="18" height="18" viewBox="0 0 18 18"><path d="M15 2V1H3v1H0v4c0 1.6 1.4 3 3 3v1c.4 1.5 3 2.6 5 3v2H5s-1 1.5-1 2h10c0-.4-1-2-1-2h-3v-2c2-.4 4.6-1.5 5-3V9c1.6-.2 3-1.4 3-3V2h-3zM3 7c-.5 0-1-.5-1-1V4h1v3zm8.4 2.5L9 8 6.6 9.4l1-2.7L5 5h3l1-2.7L10 5h2.8l-2.3 1.8 1 2.7h-.1zM16 6c0 .5-.5 1-1 1V4h1v2z"></path></svg>
+                            <span class="indicator-badge js-unread-count _positive" style="display: none;"></span>
+                        </a>
+                    </li>
+
+
+                    <li class="-item"><a href="#" class="-link js-help-button" title="Help Center and other resources">
+                        <svg role="icon" class="svg-icon iconHelp" width="18" height="18" viewBox="0 0 18 18"><path d="M9 1a8 8 0 1 0 0 16.001A8 8 0 0 0 9 1zm.812 12.126c-.02.716-.55 1.157-1.238 1.137-.659-.02-1.177-.49-1.157-1.209.02-.715.566-1.17 1.225-1.15.691.021 1.194.507 1.17 1.222zm1.956-5.114c-.168.237-.546.542-1.02.912l-.527.361c-.257.197-.417.43-.502.695-.044.141-.076.507-.084.752-.004.048-.032.156-.181.156H7.883c-.165 0-.185-.096-.18-.144.023-.667.12-1.218.397-1.66.374-.594 1.426-1.221 1.426-1.221.161-.12.286-.25.382-.39.177-.24.321-.51.321-.8 0-.333-.08-.65-.293-.915-.249-.31-.518-.458-1.036-.458-.51 0-.808.257-1.021.594-.213.338-.177.735-.177 1.097H5.746c0-1.366.357-2.238 1.112-2.752.51-.35 1.162-.502 1.921-.502.996 0 1.788.184 2.487.715.647.49.988 1.181.988 2.113 0 .575-.2 1.057-.486 1.447z"></path></svg>
+                    </a></li>
+                    <li class="-item">
+                        <a href="https://stackexchange.com" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 170 Stack Exchange sites">
+                            <svg role="icon" class="svg-icon iconStackExchange" width="18" height="18" viewBox="0 0 18 18"><path d="M1 13a2 2 0 0 0 2 2h8v3l3-3h1a2 2 0 0 0 2-2v-2H1v2zM15 1H3a2 2 0 0 0-2 2v2h16V3a2 2 0 0 0-2-2zM1 6h16v4H1V6z"></path></svg>
+                        </a>
+                    </li>
+
+
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<script>
+    StackExchange.ready(function () { StackExchange.topbar.init(); });
+    StackExchange.scrollPadding.setPaddingTop(60, 10);     </script>
+
+<div class="container  ">
+
+
+
+    <div id="content" class="snippet-hidden">
+
+
+
+
+
+        <div itemscope="" itemtype="http://schema.org/Question">
+            <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+            <div class="inner-content">
+                <div id="question-header">
+                    <h1 itemprop="name"><a href="/questions/17161243/how-to-extract-text-of-paragraph-from-html-using-jsoup" class="question-hyperlink">How to extract text of paragraph from html using Jsoup?</a></h1>
+
+
+                    <div class="aside-cta" role="navigation" aria-label="ask new question">
+                        <a href="/questions/ask" class="btn">Ask Question</a>
+                    </div>
+                </div>
+                <div id="mainbar" role="main" aria-label="question and answers">
+
+
+
+                    <div class="question" data-questionid="17161243" id="question">
+
+                        <script>
+                            var ados = ados || {}; ados.run = ados.run || [];
+                            ados.run.push(function () { ados_add_placement(22,8277,"adzerk436368561",4).setZone(43); });
+                        </script>
+                        <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk436368561"><a href="https://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo2MTE5MjIsImNoIjoxMTc4LCJjayI6e30sImNyIjozNTk1Njc2LCJkaSI6Ijc2MGM3M2Y2MmZiYzRlYTVhNWYwNDJlYTJjZGNmZGJkIiwiZG0iOjEsImZjIjo2MTQ4OTcwLCJmbCI6NjIzNTEzNCwiaXAiOiI4OS4xNzQuMjE0Ljc0Iiwia3ciOiJqc291cCx4LXVzZXItcmVnaXN0ZXJlZCx4LWNyb3NzLXNpdGUtdW5peC5zdGFja2V4Y2hhbmdlLmNvbSIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6NjE3MzcsInJ0IjoyLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5wbC8iLCJzYSI6IjMiLCJzYiI6ImktMGZlYjIyYWM1NDcyMWJhMTQiLCJzcCI6MzExMjYsInN0Ijo4Mjc3LCJ1ayI6InVlMS02YjY3M2RhMjlhZDk0MGY3YTJmYmNjNzMyNDdmZDI3YiIsInpuIjo0MywidHMiOjE1MDA0NzgzNzYxMzcsImJmIjp0cnVlLCJwbiI6ImFkemVyazQzNjM2ODU2MSIsInVyIjoiaHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9jaGFubmVscy8_dXRtX3NvdXJjZT1zby1vd25lZCZ1dG1fbWVkaXVtPWhvdXNlLWFkJnV0bV9jYW1wYWlnbj1nZW4tY2hhbm5lbHMtYmV0YSZ1dG1fY29udGVudD1sZWFkZXJib2FyZCZ1dG1fdGVybT1kZXNpZ24yIn0&amp;s=y5s23rY7A0zcbr7-k8u94cWXgo8" rel="nofollow" target="_blank" title=""><img src="https://s.zkcdn.net/Advertisers/7a9edc7d2a794e25a217e554ccedba7a.png" title="" alt="" border="0" width="728" height="90" style="display: none !important;"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li><li><label><input type="radio" value="16" name="downvoteReason">Other</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position: absolute; display: none !important;" src="https://engine.adzerk.net/i.gif?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo2MTE5MjIsImNoIjoxMTc4LCJjayI6e30sImNyIjozNTk1Njc2LCJkaSI6Ijc2MGM3M2Y2MmZiYzRlYTVhNWYwNDJlYTJjZGNmZGJkIiwiZG0iOjEsImZjIjo2MTQ4OTcwLCJmbCI6NjIzNTEzNCwiaXAiOiI4OS4xNzQuMjE0Ljc0Iiwia3ciOiJqc291cCx4LXVzZXItcmVnaXN0ZXJlZCx4LWNyb3NzLXNpdGUtdW5peC5zdGFja2V4Y2hhbmdlLmNvbSIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6NjE3MzcsInJ0IjoyLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5wbC8iLCJzYSI6IjMiLCJzYiI6ImktMGZlYjIyYWM1NDcyMWJhMTQiLCJzcCI6MzExMjYsInN0Ijo4Mjc3LCJ1ayI6InVlMS02YjY3M2RhMjlhZDk0MGY3YTJmYmNjNzMyNDdmZDI3YiIsInpuIjo0MywidHMiOjE1MDA0NzgzNzYxNDAsImJmIjp0cnVlLCJwbiI6ImFkemVyazQzNjM2ODU2MSIsImZxIjoxfQ&amp;s=FHAlYf0FR1S-lYKZ7gsoGfjEGEI"></div>    <table>
+                        <tbody><tr>
+                            <td class="votecell">
+
+
+                                <div class="vote">
+                                    <input type="hidden" name="_id_" value="17161243">
+                                    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+                                    <span itemprop="upvoteCount" class="vote-count-post ">4</span>
+                                    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+                                    <a class="star-off" href="#" title="Click to mark as favorite question (click again to undo)">favorite</a>
+                                    <div class="favoritecount"><b>2</b></div>
+
+
+                                </div>
+
+                            </td>
+
+                            <td class="postcell">
+                                <div>
+                                    <div class="post-text" itemprop="text">
+
+<pre class="lang-java prettyprint prettyprinted"><code><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">IOException</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">logging</span><span class="pun">.</span><span class="typ">Level</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">logging</span><span class="pun">.</span><span class="typ">Logger</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">jsoup</span><span class="pun">.</span><span class="typ">Jsoup</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">jsoup</span><span class="pun">.</span><span class="pln">nodes</span><span class="pun">.</span><span class="typ">Document</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">jsoup</span><span class="pun">.</span><span class="pln">nodes</span><span class="pun">.</span><span class="typ">Element</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">jsoup</span><span class="pun">.</span><span class="pln">select</span><span class="pun">.</span><span class="typ">Elements</span><span class="pun">;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">JavaApplication14</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln">  </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">Document</span><span class="pln"> doc </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Jsoup</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="str">"tanmoy_mahathir.makes.org/thimble/146"</span><span class="pun">).</span><span class="pln">get</span><span class="pun">();</span><span class="pln">
+         </span><span class="typ">String</span><span class="pln"> html</span><span class="pun">=</span><span class="pln"> </span><span class="str">"&lt;html&gt;&lt;head&gt;&lt;/head&gt;"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">"&lt;body&gt;&lt;p&gt;Parsed HTML into a doc."</span><span class="pln">
+                 </span><span class="pun">+</span><span class="pln"> </span><span class="str">"&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"</span><span class="pun">;</span><span class="pln">
+  </span><span class="typ">Elements</span><span class="pln"> paragraphs </span><span class="pun">=</span><span class="pln"> doc</span><span class="pun">.</span><span class="pln">select</span><span class="pun">(</span><span class="str">"p"</span><span class="pun">);</span><span class="pln">
+  </span><span class="kwd">for</span><span class="pun">(</span><span class="typ">Element</span><span class="pln"> p </span><span class="pun">:</span><span class="pln"> paragraphs</span><span class="pun">)</span><span class="pln">
+    </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">p</span><span class="pun">.</span><span class="pln">text</span><span class="pun">());</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> ex</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">Logger</span><span class="pun">.</span><span class="pln">getLogger</span><span class="pun">(</span><span class="typ">JavaApplication14</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">.</span><span class="pln">getName</span><span class="pun">()).</span><span class="pln">log</span><span class="pun">(</span><span class="typ">Level</span><span class="pun">.</span><span class="pln">SEVERE</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> ex</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+                                        <p>}</p>
+
+                                        <p>can anyone help me with jsoup code how can i parse just portion including paragraph so that just print </p>
+
+                                        <pre class="lang-java prettyprint prettyprinted"><code><span class="typ">Hello</span><span class="pln"> </span><span class="pun">,</span><span class="typ">World</span><span class="pun">!</span><span class="pln">
+</span><span class="typ">Nothing</span><span class="pln"> is impossible</span></code></pre>
+                                    </div>
+                                    <div class="post-taglist">
+                                        <a href="/questions/tagged/jsoup" class="post-tag js-gps-track" title="" rel="tag">jsoup</a>
+                                    </div>
+                                    <table class="fw">
+                                        <tbody><tr>
+                                            <td class="vt">
+                                                <div class="post-menu"><a href="/q/17161243/4430543" title="short permalink to this question" class="short-link" id="link-post-17161243">share</a><span class="lsep">|</span><a href="/posts/17161243/edit" class="suggest-edit-post" title="revise and improve this post">edit</a><span class="lsep">|</span><a href="#" class="flag-post-link" title="flag this post for serious problems or moderator attention" data-postid="17161243">flag</a></div>
+                                            </td>
+                                            <td align="right" class="post-signature">
+                                                <div class="user-info ">
+                                                    <div class="user-action-time">
+                                                        <a href="/posts/17161243/revisions" title="show all edits to this post">edited <span title="2013-06-18 08:27:50Z" class="relativetime">Jun 18 '13 at 8:27</span></a>
+                                                    </div>
+                                                    <div class="user-gravatar32">
+
+                                                    </div>
+                                                    <div class="user-details">
+
+                                                        <div class="-flair">
+
+                                                        </div>
+                                                    </div>
+                                                </div>    </td>
+                                            <td class="post-signature owner">
+                                                <div class="user-info ">
+                                                    <div class="user-action-time">
+                                                        asked <span title="2013-06-18 05:35:45Z" class="relativetime">Jun 18 '13 at 5:35</span>
+                                                    </div>
+                                                    <div class="user-gravatar32">
+                                                        <a href="/users/2442490/tanmoy-mahathir"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/rzZn0.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+                                                    </div>
+                                                    <div class="user-details">
+                                                        <a href="/users/2442490/tanmoy-mahathir">Tanmoy Mahathir</a>
+                                                        <div class="-flair">
+                                                            <span class="reputation-score" title="reputation score " dir="ltr">75</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="7 bronze badges"><span class="badge3"></span><span class="badgecount">7</span></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody></table>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="votecell"></td>
+                            <td>
+                                <div id="comments-17161243" class="comments ">
+                                    <table>
+                                        <tbody data-remaining-comments-count="0" data-canpost="true" data-cansee="false" data-comments-unavailable="false" data-addlink-disabled="false">
+
+
+
+                                        <tr id="comment-24844473" class="comment ">
+                                            <td class="comment-actions">
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class=" comment-score">
+                                                            &nbsp;&nbsp;
+                                                        </td>
+                                                        <td>
+                                                            <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>
+                                                            <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td class="comment-text">
+                                                <div style="display: block;" class="comment-body">
+                                                    <span class="comment-copy">i just tried  this                                  imporjava.io.IOException;    import org.jsoup.*;    import org.jsoup.nodes.Document;     public class JavaApplication10 {      /**      * @param args the command line arguments      */     public static void main(String[] args) throws IOException { 	        Document document =    Jsoup.connect("<a href="https://tanmoy_mahathir.makes.org/thimble/146&quot;).get()" rel="nofollow noreferrer">tanmoy_mahathir.makes.org/thimble/146").get()</a>‌​; String html;         html = "&lt;html&gt;&lt;head&gt;&lt;/head&gt;"    + "&lt;body&gt;&lt;p&gt;Parsed HTML into a doc.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"; Document doc = Jsoup.parse(html);     // ... }        }</span>
+                                                    –&nbsp;<a href="/users/2442490/tanmoy-mahathir" title="75 reputation" class="comment-user owner">Tanmoy Mahathir</a>
+                                                    <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment24844473_17161243"><span title="2013-06-18 05:42:32Z" class="relativetime-clean">Jun 18 '13 at 5:42</span></a></span>
+                                                    <span class="edited-yes" title="this comment was edited 3 times"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr id="comment-24845974" class="comment ">
+                                            <td class="comment-actions">
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class=" comment-score">
+                                                            &nbsp;&nbsp;
+                                                        </td>
+                                                        <td>
+                                                            <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>
+                                                            <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td class="comment-text">
+                                                <div style="display: block;" class="comment-body">
+                                                    <span class="comment-copy">I note that you're not using <code>document</code>... and you're not doing anything with <code>doc</code> after you create it.</span>
+                                                    –&nbsp;<a href="/users/1866587/selig" title="3,525 reputation" class="comment-user">selig</a>
+                                                    <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment24845974_17161243"><span title="2013-06-18 06:47:25Z" class="relativetime-clean">Jun 18 '13 at 6:47</span></a></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <td class="comment-form">
+                                                <form id="add-comment-17161243" class="" data-placeholdertext="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."></form>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+                                <div id="comments-link-17161243">
+
+                                    <a class="js-add-link comments-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments." href="#">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+                                    <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+                                </div>
+                            </td>
+                        </tr>              <tr class="bounty-notification">
+                            <td class="votecell"></td>
+                            <td>
+                                <div style="margin-top:20px">
+                                    <a class="bounty-link bounty" title="offer some of your reputation for better answers">
+                                        start a bounty
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody></table>
+                    </div>
+
+                    <div id="answers">
+
+                        <a name="tab-top"></a>
+                        <div id="answers-header">
+                            <div class="subheader answers-subheader">
+                                <h2>
+                                    3 Answers
+                                    <span style="display:none;" itemprop="answerCount">3</span>
+                                </h2>
+                                <div>
+                                    <div id="tabs">
+                                        <a href="/questions/17161243/how-to-extract-text-of-paragraph-from-html-using-jsoup?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+                                            active</a>
+                                        <a class="youarehere" href="/questions/17161243/how-to-extract-text-of-paragraph-from-html-using-jsoup?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+                                            oldest</a>
+                                        <a href="/questions/17161243/how-to-extract-text-of-paragraph-from-html-using-jsoup?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+                                            votes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <a name="17162290"></a>
+                        <div id="answer-17162290" class="answer accepted-answer" data-answerid="17162290" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+                            <table>
+                                <tbody><tr>
+                                    <td class="votecell">
+
+
+                                        <div class="vote">
+                                            <input type="hidden" name="_id_" value="17162290">
+                                            <a class="vote-up-off" title="This answer is useful">up vote</a>
+                                            <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+                                            <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+                                            <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+
+                                        </div>
+
+                                    </td>
+
+
+
+                                    <td class="answercell">
+                                        <div class="post-text" itemprop="text">
+                                            <p>For this small bit of html you just need to do</p>
+
+                                            <pre class="lang-java prettyprint prettyprinted"><code><span class="typ">String</span><span class="pln"> html</span><span class="pun">=</span><span class="pln"> </span><span class="str">"&lt;html&gt;&lt;head&gt;&lt;/head&gt;"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="str">"&lt;body&gt;&lt;p&gt;Parsed HTML into a doc."</span><span class="pun">+</span><span class="pln">
+                    </span><span class="pun">+</span><span class="str">"&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"</span><span class="pun">;</span><span class="pln">
+</span><span class="typ">Document</span><span class="pln"> doc </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Jsoup</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">html</span><span class="pun">);</span><span class="pln">
+</span><span class="typ">Elements</span><span class="pln"> paragraphs </span><span class="pun">=</span><span class="pln"> doc</span><span class="pun">.</span><span class="pln">select</span><span class="pun">(</span><span class="str">"p"</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">for</span><span class="pun">(</span><span class="typ">Element</span><span class="pln"> p </span><span class="pun">:</span><span class="pln"> paragraphs</span><span class="pun">)</span><span class="pln">
+  </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">p</span><span class="pun">.</span><span class="pln">text</span><span class="pun">());</span></code></pre>
+
+                                            <p>As I see your link contains pretty much the same html you could then also replace the definition of <code>doc</code> with</p>
+
+                                            <pre class="lang-java prettyprint prettyprinted"><code><span class="typ">Document</span><span class="pln"> doc </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Jsoup</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="str">"https://tanmoy_mahathir.makes.org/thimble/146"</span><span class="pun">).</span><span class="pln">get</span><span class="pun">();</span></code></pre>
+
+                                            <p><strong>UPDATE</strong></p>
+
+                                            <p>Here is the full code that compiles and runs fine for me.</p>
+
+                                            <pre class="lang-java prettyprint prettyprinted"><code><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">io</span><span class="pun">.</span><span class="typ">IOException</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> java</span><span class="pun">.</span><span class="pln">util</span><span class="pun">.</span><span class="pln">logging</span><span class="pun">.*;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">jsoup</span><span class="pun">.*;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">jsoup</span><span class="pun">.</span><span class="pln">nodes</span><span class="pun">.*;</span><span class="pln">
+</span><span class="kwd">import</span><span class="pln"> org</span><span class="pun">.</span><span class="pln">jsoup</span><span class="pun">.</span><span class="pln">select</span><span class="pun">.*;</span><span class="pln">
+
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">JavaApplication14</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln">  </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">try</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">String</span><span class="pln"> url </span><span class="pun">=</span><span class="pln"> </span><span class="str">"https://tanmoy_mahathir.makes.org/thimble/146"</span><span class="pun">;</span><span class="pln">
+      </span><span class="typ">Document</span><span class="pln"> doc </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Jsoup</span><span class="pun">.</span><span class="pln">connect</span><span class="pun">(</span><span class="pln">url</span><span class="pun">).</span><span class="pln">get</span><span class="pun">();</span><span class="pln">
+      </span><span class="typ">Elements</span><span class="pln"> paragraphs </span><span class="pun">=</span><span class="pln"> doc</span><span class="pun">.</span><span class="pln">select</span><span class="pun">(</span><span class="str">"p"</span><span class="pun">);</span><span class="pln">
+      </span><span class="kwd">for</span><span class="pun">(</span><span class="typ">Element</span><span class="pln"> p </span><span class="pun">:</span><span class="pln"> paragraphs</span><span class="pun">)</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="pln">p</span><span class="pun">.</span><span class="pln">text</span><span class="pun">());</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="kwd">catch</span><span class="pln"> </span><span class="pun">(</span><span class="typ">IOException</span><span class="pln"> ex</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      </span><span class="typ">Logger</span><span class="pun">.</span><span class="pln">getLogger</span><span class="pun">(</span><span class="typ">JavaApplication14</span><span class="pun">.</span><span class="kwd">class</span><span class="pun">.</span><span class="pln">getName</span><span class="pun">())</span><span class="pln">
+            </span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="typ">Level</span><span class="pun">.</span><span class="pln">SEVERE</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">null</span><span class="pun">,</span><span class="pln"> ex</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+                                        </div>
+                                        <table class="fw">
+                                            <tbody><tr>
+                                                <td class="vt">
+                                                    <div class="post-menu"><a href="/a/17162290/4430543" title="short permalink to this answer" class="short-link" id="link-post-17162290">share</a><span class="lsep">|</span><a href="/posts/17162290/edit" class="suggest-edit-post" title="revise and improve this post">edit</a><span class="lsep">|</span><a href="#" class="flag-post-link" title="flag this post for serious problems or moderator attention" data-postid="17162290">flag</a></div>                    </td>
+                                                <td align="right" class="post-signature">
+                                                    <div class="user-info ">
+                                                        <div class="user-action-time">
+                                                            <a href="/posts/17162290/revisions" title="show all edits to this post">edited <span title="2013-06-18 11:31:43Z" class="relativetime">Jun 18 '13 at 11:31</span></a>
+                                                        </div>
+                                                        <div class="user-gravatar32">
+
+                                                        </div>
+                                                        <div class="user-details">
+
+                                                            <div class="-flair">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>    </td>
+
+
+
+                                                <td align="right" class="post-signature">
+
+
+                                                    <div class="user-info user-hover">
+                                                        <div class="user-action-time">
+                                                            answered <span title="2013-06-18 06:51:25Z" class="relativetime">Jun 18 '13 at 6:51</span>
+                                                        </div>
+                                                        <div class="user-gravatar32">
+                                                            <a href="/users/1866587/selig"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/275b5ababaf87993377986a01b171800?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+                                                        </div>
+                                                        <div class="user-details">
+                                                            <a href="/users/1866587/selig">selig</a>
+                                                            <div class="-flair">
+                                                                <span class="reputation-score" title="reputation score " dir="ltr">3,525</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="12 silver badges"><span class="badge2"></span><span class="badgecount">12</span></span><span title="31 bronze badges"><span class="badge3"></span><span class="badgecount">31</span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody></table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="votecell"></td>
+                                    <td>
+                                        <div id="comments-17162290" class="comments ">
+                                            <table>
+                                                <tbody data-remaining-comments-count="8" data-canpost="true" data-cansee="false" data-comments-unavailable="false" data-addlink-disabled="false">
+
+
+
+                                                <tr id="comment-24848346" class="comment ">
+                                                    <td class="comment-actions">
+                                                        <table>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class=" comment-score">
+                                                                    &nbsp;&nbsp;
+                                                                </td>
+                                                                <td>
+                                                                    <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>&nbsp;</td>
+                                                                <td>
+                                                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td class="comment-text">
+                                                        <div style="display: block;" class="comment-body">
+                                                            <span class="comment-copy">Please don't put large chunks of text in a comment like that - it's unreadable. When you say still no luck, what actually happens?</span>
+                                                            –&nbsp;<a href="/users/1866587/selig" title="3,525 reputation" class="comment-user">selig</a>
+                                                            <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment24848346_17162290"><span title="2013-06-18 08:07:59Z" class="relativetime-clean">Jun 18 '13 at 8:07</span></a></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr id="comment-24848392" class="comment ">
+                                                    <td class="comment-actions">
+                                                        <table>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class=" comment-score">
+                                                                    &nbsp;&nbsp;
+                                                                </td>
+                                                                <td>
+                                                                    <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>&nbsp;</td>
+                                                                <td>
+                                                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td class="comment-text">
+                                                        <div style="display: block;" class="comment-body">
+                                                            <span class="comment-copy">ok i am new to stack overflow ,i dont know how to edit a comment.</span>
+                                                            –&nbsp;<a href="/users/2442490/tanmoy-mahathir" title="75 reputation" class="comment-user owner">Tanmoy Mahathir</a>
+                                                            <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment24848392_17162290"><span title="2013-06-18 08:09:40Z" class="relativetime-clean">Jun 18 '13 at 8:09</span></a></span>
+                                                            <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr id="comment-24848491" class="comment ">
+                                                    <td class="comment-actions">
+                                                        <table>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class=" comment-score">
+                                                                    &nbsp;&nbsp;
+                                                                </td>
+                                                                <td>
+                                                                    <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>&nbsp;</td>
+                                                                <td>
+                                                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td class="comment-text">
+                                                        <div style="display: block;" class="comment-body">
+                                                            <span class="comment-copy">no luck means it is showingException in thread "main" java.lang.IllegalArgumentException: Malformed URL: tanmoy_mahathir.makes.org/thimble/146 	at org.jsoup.helper.HttpConnection.url(HttpConnection.java:55)</span>
+                                                            –&nbsp;<a href="/users/2442490/tanmoy-mahathir" title="75 reputation" class="comment-user owner">Tanmoy Mahathir</a>
+                                                            <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment24848491_17162290"><span title="2013-06-18 08:12:40Z" class="relativetime-clean">Jun 18 '13 at 8:12</span></a></span>
+                                                            <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr id="comment-24848677" class="comment ">
+                                                    <td class="comment-actions">
+                                                        <table>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class=" comment-score">
+                                                                    &nbsp;&nbsp;
+                                                                </td>
+                                                                <td>
+                                                                    <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>&nbsp;</td>
+                                                                <td>
+                                                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td class="comment-text">
+                                                        <div style="display: block;" class="comment-body">
+                                                            <span class="comment-copy">Ah yes you need <code>Jsoup.connect("https://tanmoy_mahathir.makes.org/thimble/146‌​").get();</code> - the url needs the protocol.</span>
+                                                            –&nbsp;<a href="/users/1866587/selig" title="3,525 reputation" class="comment-user">selig</a>
+                                                            <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment24848677_17162290"><span title="2013-06-18 08:19:18Z" class="relativetime-clean">Jun 18 '13 at 8:19</span></a></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr id="comment-24848681" class="comment ">
+                                                    <td class="comment-actions">
+                                                        <table>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class=" comment-score">
+                                                                    &nbsp;&nbsp;
+                                                                </td>
+                                                                <td>
+                                                                    <a class="comment-up comment-up-off" title="this comment adds something useful to the post">upvote</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>&nbsp;</td>
+                                                                <td>
+                                                                    <a class="comment-flag" title="Flag this comment for serious problems or moderator attention">flag</a>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    <td class="comment-text">
+                                                        <div style="display: block;" class="comment-body">
+                                                            <span class="comment-copy">hey selig bro can i send you this code through email?</span>
+                                                            –&nbsp;<a href="/users/2442490/tanmoy-mahathir" title="75 reputation" class="comment-user owner">Tanmoy Mahathir</a>
+                                                            <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment24848681_17162290"><span title="2013-06-18 08:19:23Z" class="relativetime-clean">Jun 18 '13 at 8:19</span></a></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="comment-form">
+                                                        <form id="add-comment-17162290" class="" data-placeholdertext="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></form>
+                                                    </td>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+
+                                        <div id="comments-link-17162290">
+
+                                            <a class="js-add-link comments-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." href="#">add a comment</a><span class="js-link-separator ">&nbsp;|&nbsp;</span>
+                                            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="#" onclick="">show <b>8</b> more comments</a>
+                                        </div>
+                                    </td>
+                                </tr>    </tbody></table>
+                        </div>
+                        <script>
+                            var ados = ados || {}; ados.run = ados.run || [];
+                            ados.run.push(function () { ados_add_placement(22,8277,"adzerk1945578257",4).setZone(44); });
+                        </script>
+                        <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1945578257"><a href="https://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo2MTE5MjIsImNoIjoxMTc4LCJjayI6e30sImNyIjozNTk1NjgzLCJkaSI6ImY1YzQzZGZjMjBkZTQ2YzY4NWQ1MTNmN2NjM2FiNmJhIiwiZG0iOjEsImZjIjo2MTQ4OTc3LCJmbCI6NjIzNTE1MSwiaXAiOiI4OS4xNzQuMjE0Ljc0Iiwia3ciOiJqc291cCx4LXVzZXItcmVnaXN0ZXJlZCx4LWNyb3NzLXNpdGUtdW5peC5zdGFja2V4Y2hhbmdlLmNvbSIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6NjE3MzcsInJ0IjoyLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5wbC8iLCJzYSI6IjMiLCJzYiI6ImktMGZlYjIyYWM1NDcyMWJhMTQiLCJzcCI6MzExMjYsInN0Ijo4Mjc3LCJ1ayI6InVlMS02YjY3M2RhMjlhZDk0MGY3YTJmYmNjNzMyNDdmZDI3YiIsInpuIjo0NCwidHMiOjE1MDA0NzgzNzYxNDEsImJmIjp0cnVlLCJwbiI6ImFkemVyazE5NDU1NzgyNTciLCJ1ciI6Imh0dHBzOi8vc3RhY2tvdmVyZmxvdy5jb20vY2hhbm5lbHMvP3V0bV9zb3VyY2U9c28tb3duZWQmdXRtX21lZGl1bT1ob3VzZS1hZCZ1dG1fY2FtcGFpZ249Z2VuLWNoYW5uZWxzLWJldGEmdXRtX2NvbnRlbnQ9bGVhZGVyYm9hcmQmdXRtX3Rlcm09ZGVzaWduMyJ9&amp;s=5lGK_3Z_6Uf_5kJcevRzqFg4w1c" rel="nofollow" target="_blank" title=""><img src="https://s.zkcdn.net/Advertisers/5a4b4384c3a14c229a5a71f1fd85e47e.png" title="" alt="" border="0" width="728" height="90" style="display: none !important;"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li><li><label><input type="radio" value="16" name="downvoteReason">Other</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position: absolute; display: none !important;" src="https://engine.adzerk.net/i.gif?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo2MTE5MjIsImNoIjoxMTc4LCJjayI6e30sImNyIjozNTk1NjgzLCJkaSI6ImY1YzQzZGZjMjBkZTQ2YzY4NWQ1MTNmN2NjM2FiNmJhIiwiZG0iOjEsImZjIjo2MTQ4OTc3LCJmbCI6NjIzNTE1MSwiaXAiOiI4OS4xNzQuMjE0Ljc0Iiwia3ciOiJqc291cCx4LXVzZXItcmVnaXN0ZXJlZCx4LWNyb3NzLXNpdGUtdW5peC5zdGFja2V4Y2hhbmdlLmNvbSIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6NjE3MzcsInJ0IjoyLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5wbC8iLCJzYSI6IjMiLCJzYiI6ImktMGZlYjIyYWM1NDcyMWJhMTQiLCJzcCI6MzExMjYsInN0Ijo4Mjc3LCJ1ayI6InVlMS02YjY3M2RhMjlhZDk0MGY3YTJmYmNjNzMyNDdmZDI3YiIsInpuIjo0NCwidHMiOjE1MDA0NzgzNzYxNDIsImJmIjp0cnVlLCJwbiI6ImFkemVyazE5NDU1NzgyNTciLCJmcSI6MX0&amp;s=Qf-lPkX3h5wQCxq1hasJlpi-6OY"></div>
+
+                        <a name="17161814"></a>
+                        <div id="answer-17161814" class="answer" data-answerid="17161814" itemscope="" itemtype="http://schema.org/Answer">
+                            <table>
+                                <tbody><tr>
+                                    <td class="votecell">
+
+
+                                        <div class="vote">
+                                            <input type="hidden" name="_id_" value="17161814">
+                                            <a class="vote-up-off" title="This answer is useful">up vote</a>
+                                            <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+                                            <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+                                        </div>
+
+                                    </td>
+
+
+
+                                    <td class="answercell">
+                                        <div class="post-text" itemprop="text">
+                                            <p>You may start by trying this....</p>
+
+                                            <pre class="lang-java prettyprint prettyprinted"><code><span class="typ">String</span><span class="pln"> url </span><span class="pun">=</span><span class="pln"> </span><span class="str">"url of the html page"</span><span class="pun">;</span><span class="pln">
+</span><span class="typ">Document</span><span class="pln"> page </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Jsoup</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">url</span><span class="pun">);</span><span class="pln">
+
+</span><span class="typ">Elements</span><span class="pln"> elements </span><span class="pun">=</span><span class="pln"> page</span><span class="pun">.</span><span class="pln">select</span><span class="pun">(</span><span class="str">"div[class=class_name] p"</span><span class="pun">);</span></code></pre>
+                                        </div>
+                                        <table class="fw">
+                                            <tbody><tr>
+                                                <td class="vt">
+                                                    <div class="post-menu"><a href="/a/17161814/4430543" title="short permalink to this answer" class="short-link" id="link-post-17161814">share</a><span class="lsep">|</span><a href="/posts/17161814/edit" class="suggest-edit-post" title="revise and improve this post">edit</a><span class="lsep">|</span><a href="#" class="flag-post-link" title="flag this post for serious problems or moderator attention" data-postid="17161814">flag</a></div>                    </td>
+                                                <td align="right" class="post-signature">
+                                                    <div class="user-info ">
+                                                        <div class="user-action-time">
+                                                            <a href="/posts/17161814/revisions" title="show all edits to this post">edited <span title="2014-07-22 12:16:31Z" class="relativetime">Jul 22 '14 at 12:16</span></a>
+                                                        </div>
+                                                        <div class="user-gravatar32">
+                                                            <a href="/users/3845180/darrell"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/bqDCh.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+                                                        </div>
+                                                        <div class="user-details">
+                                                            <a href="/users/3845180/darrell">Darrell</a>
+                                                            <div class="-flair">
+                                                                <span class="reputation-score" title="reputation score " dir="ltr">583</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="16 bronze badges"><span class="badge3"></span><span class="badgecount">16</span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>    </td>
+
+
+
+                                                <td align="right" class="post-signature">
+
+
+                                                    <div class="user-info ">
+                                                        <div class="user-action-time">
+                                                            answered <span title="2013-06-18 06:20:46Z" class="relativetime">Jun 18 '13 at 6:20</span>
+                                                        </div>
+                                                        <div class="user-gravatar32">
+                                                            <a href="/users/2424884/obsolete"><div class="gravatar-wrapper-32"><img src="https://www.gravatar.com/avatar/abb79c7ccfe4ec27d7f02efc3fdbe205?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32"></div></a>
+                                                        </div>
+                                                        <div class="user-details">
+                                                            <a href="/users/2424884/obsolete">obsolete</a>
+                                                            <div class="-flair">
+                                                                <span class="reputation-score" title="reputation score " dir="ltr">18</span><span title="7 bronze badges"><span class="badge3"></span><span class="badgecount">7</span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody></table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="votecell"></td>
+                                    <td>
+                                        <div id="comments-17161814" class="comments  dno">
+                                            <table>
+                                                <tbody data-remaining-comments-count="0" data-canpost="true" data-cansee="false" data-comments-unavailable="false" data-addlink-disabled="false">
+
+                                                <tr><td></td><td></td></tr>
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="comment-form">
+                                                        <form id="add-comment-17161814" class="" data-placeholdertext="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></form>
+                                                    </td>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+
+                                        <div id="comments-link-17161814">
+
+                                            <a class="js-add-link comments-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." href="#">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+                                            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+                                        </div>
+                                    </td>
+                                </tr>    </tbody></table>
+                        </div>
+
+
+                        <a name="25635695"></a>
+                        <div id="answer-25635695" class="answer" data-answerid="25635695" itemscope="" itemtype="http://schema.org/Answer">
+                            <table>
+                                <tbody><tr>
+                                    <td class="votecell">
+
+
+                                        <div class="vote">
+                                            <input type="hidden" name="_id_" value="25635695">
+                                            <a class="vote-up-off" title="This answer is useful">up vote</a>
+                                            <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+                                            <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+                                        </div>
+
+                                    </td>
+
+
+
+                                    <td class="answercell">
+                                        <div class="post-text" itemprop="text">
+                                            <ol>
+                                                <li>Element firstPara = d.select("div.post-content p").first() ;2</li>
+                                                <li>System.out.println(firstPara);</li>
+                                            </ol>
+
+                                            <p>you can select tag with it's class and then can go more specific like getting first paragraph</p>
+                                        </div>
+                                        <table class="fw">
+                                            <tbody><tr>
+                                                <td class="vt">
+                                                    <div class="post-menu"><a href="/a/25635695/4430543" title="short permalink to this answer" class="short-link" id="link-post-25635695">share</a><span class="lsep">|</span><a href="/posts/25635695/edit" class="suggest-edit-post" title="revise and improve this post">edit</a><span class="lsep">|</span><a href="#" class="flag-post-link" title="flag this post for serious problems or moderator attention" data-postid="25635695">flag</a></div>                    </td>
+
+
+
+                                                <td align="right" class="post-signature">
+
+
+                                                    <div class="user-info ">
+                                                        <div class="user-action-time">
+                                                            answered <span title="2014-09-03 03:15:51Z" class="relativetime">Sep 3 '14 at 3:15</span>
+                                                        </div>
+                                                        <div class="user-gravatar32">
+                                                            <a href="/users/2750582/nomanjaved"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/pHYV8.jpg?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+                                                        </div>
+                                                        <div class="user-details">
+                                                            <a href="/users/2750582/nomanjaved">NomanJaved</a>
+                                                            <div class="-flair">
+                                                                <span class="reputation-score" title="reputation score " dir="ltr">409</span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="13 bronze badges"><span class="badge3"></span><span class="badgecount">13</span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody></table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="votecell"></td>
+                                    <td>
+                                        <div id="comments-25635695" class="comments  dno">
+                                            <table>
+                                                <tbody data-remaining-comments-count="0" data-canpost="true" data-cansee="false" data-comments-unavailable="false" data-addlink-disabled="false">
+
+                                                <tr><td></td><td></td></tr>
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="comment-form">
+                                                        <form id="add-comment-25635695" class="" data-placeholdertext="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></form>
+                                                    </td>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+
+                                        <div id="comments-link-25635695">
+
+                                            <a class="js-add-link comments-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”." href="#">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+                                            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a>
+                                        </div>
+                                    </td>
+                                </tr>    </tbody></table>
+                        </div>
+                        <a name="new-answer"></a>
+                        <form id="post-form" action="/questions/17161243/answer/submit" method="post" class="post-form">
+                            <input type="hidden" id="post-id" value="17161243">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="https://www.google.pl/">
+                            <h2 class="space">Your Answer</h2>
+
+
+                            <script>
+                                StackExchange.ifUsing("editor", function () {
+                                    StackExchange.using("externalEditor", function () {
+                                        StackExchange.using("snippets", function () {
+                                            StackExchange.snippets.init();
+                                        });
+                                    });
+                                }, "code-snippets");
+                            </script>
+
+
+                            <script>
+                                StackExchange.ready(function() {
+                                    initTagRenderer("".split(" "), "".split(" "));
+
+                                    StackExchange.using("externalEditor", function() {
+                                        // Have to fire editor after snippets, if snippets enabled
+                                        if (StackExchange.settings.snippets.snippetsEnabled) {
+                                            StackExchange.using("snippets", function() {
+                                                createEditor();
+                                            });
+                                        }
+                                        else {
+                                            createEditor();
+                                        }
+                                    });
+
+                                    function createEditor() {
+                                        StackExchange.prepareEditor({
+                                                                        heartbeatType: 'answer',
+                                                                        convertImagesToLinks: false,
+                                                                        reputationToPostImages: null,
+                                                                        bindNavPrevention: true,
+                                                                        postfix: "",
+                                                                        onDemand: false,
+                                                                        discardSelector: ".discard-answer"
+
+                                                                    });
+
+
+                                    }
+                                });
+                            </script>
+
+
+                            <div id="post-editor" class="post-editor js-post-editor">
+
+                                <div style="position: relative;">
+                                    <div class="wmd-container">
+                                        <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" title="Strong <strong> Ctrl+B" style="left: 0px;"><span style="background-position: 0px 0px;"></span></li><li class="wmd-button" id="wmd-italic-button" title="Emphasis <em> Ctrl+I" style="left: 25px;"><span style="background-position: -20px 0px;"></span></li><li class="wmd-spacer wmd-spacer1" id="wmd-spacer1"></li><li class="wmd-button" id="wmd-link-button" title="Hyperlink <a> Ctrl+L" style="left: 75px;"><span style="background-position: -40px 0px;"></span></li><li class="wmd-button" id="wmd-quote-button" title="Blockquote <blockquote> Ctrl+Q" style="left: 100px;"><span style="background-position: -60px 0px;"></span></li><li class="wmd-button" id="wmd-code-button" title="Code Sample <pre><code> Ctrl+K" style="left: 125px;"><span style="background-position: -80px 0px;"></span></li><li class="wmd-button" id="wmd-image-button" title="Image <img> Ctrl+G" style="left: 150px;"><span style="background-position: -100px 0px;"></span></li><li class="wmd-button wmd-snippet-button" style="left:175px" id="wmd-snippet-button" title="JavaScript/HTML/CSS snippet Ctrl-M"><span style="background-image: url(&quot;/content/Shared/balsamiq/wmd-mockup-button.png&quot;);"></span></li><li class="wmd-spacer wmd-spacer2" id="wmd-spacer2" style="left: 220px;"></li><li class="wmd-button" id="wmd-olist-button" title="Numbered List <ol> Ctrl+O" style="left: 225px;"><span style="background-position: -120px 0px;"></span></li><li class="wmd-button" id="wmd-ulist-button" title="Bulleted List <ul> Ctrl+U" style="left: 250px;"><span style="background-position: -140px 0px;"></span></li><li class="wmd-button" id="wmd-heading-button" title="Heading <h1>/<h2> Ctrl+H" style="left: 275px;"><span style="background-position: -160px 0px;"></span></li><li class="wmd-button" id="wmd-hr-button" title="Horizontal Rule <hr> Ctrl+R" style="left: 300px;"><span style="background-position: -180px 0px;"></span></li><li class="wmd-spacer wmd-spacer3" id="wmd-spacer3" style="left: 346px;"></li><li class="wmd-button" id="wmd-undo-button" title="Undo - Ctrl+Z" style="left: 350px;"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" id="wmd-redo-button" title="Redo - Ctrl+Y" style="left: 375px;"><span style="background-position: -220px -20px;"></span></li><li class="wmd-button wmd-help-button" id="wmd-help-button" title="Markdown Editing Help" style="right: 0px;"><span style="background-position: -240px 0px;"></span></li></ul></div>
+                                        <textarea id="wmd-input" class="wmd-input processed" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+                                        <div class="grippie" style="margin-right: 0px;"></div></div>
+                                </div>
+
+                                <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+                                <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+                                <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+                                <div class="community-option g-row ai-center f-checkbox">
+                                    <div class="g-col -input">
+                                        <input id="communitymode" name="communitymode" type="checkbox">
+                                    </div>
+                                    <div class="g-col">
+                                        <label for="communitymode" class="f-label _small" title="Marking an answer community wiki encourages others to edit it by lowering the reputation barrier required to edit. However, you will not gain any upvote reputation from it. This cannot be undone.">community wiki</label>
+                                    </div>
+                                </div>
+
+
+                                <div id="wmd-preview" class="wmd-preview"></div>
+                                <div></div>
+                                <div class="edit-block">
+                                    <input id="fkey" name="fkey" type="hidden" value="09076c858c4b8010cdb68cbd6ae02e86">
+                                    <input id="author" name="author" type="text">
+                                </div>
+
+
+
+                            </div>
+
+                            <div style="position: relative;">
+
+
+                            </div>
+
+                            <div class="form-submit cbt">
+                                <input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+                                <a href="#" class="btn-clear discard-answer dno">discard</a>
+                            </div>
+                        </form>
+
+
+
+                        <h2 class="bottom-notice" data-loc="1">
+                            Not the answer you're looking for?							Browse other questions tagged <a href="/questions/tagged/jsoup" class="post-tag" title="show questions tagged 'jsoup'" rel="tag">jsoup</a>  or <a href="/questions/ask">ask your own question</a>.						</h2>
+                    </div>
+                </div>
+                <div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+                    <div class="module question-stats">
+                        <table id="qinfo">
+                            <tbody><tr>
+                                <td>
+                                    <p class="label-key">asked</p>
+                                </td>
+                                <td style="padding-left: 10px">
+                                    <p class="label-key" title="2013-06-18 05:35:45Z"><b>4 years, 1 month ago</b></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="label-key">viewed</p>
+                                </td>
+
+                                <td style="padding-left: 10px">
+                                    <p class="label-key">
+                                        <b>9,696 times</b>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="label-key">active</p>
+                                </td>
+                                <td style="padding-left: 10px">
+                                    <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2014-09-03 03:15:51Z">2 years, 10 months ago</a></b></p>
+                                </td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                    <div class="module community-bulletin" data-tracker="cb=1">
+                        <div class="related">
+                            <div class="bulletin-title">
+                                Upcoming Events
+                            </div>
+                            <hr>
+                            <div class="spacer bulletin-item-important">
+
+                                <div class="bulletin-item-type"><a href="http://stackoverflow.com/election?cb=1" class="question-hyperlink"><div class="favicon favicon-stackoverflow" title="Stack Overflow"></div></a></div>
+                                <div class="bulletin-item-content">
+                                    <a href="http://stackoverflow.com/election?cb=1" class="question-hyperlink">2017 Community Moderator Election</a>
+                                    <div>ends <span title="2017-08-01 20:00:00Z">Aug 1</span></div>
+                                </div>
+                                <br class="cbt">
+                            </div>
+                            <div class="bulletin-title">
+                                Blog
+                            </div>
+                            <hr>
+                            <div class="spacer">
+                                <div class="bulletin-item-type">
+                                    <a href="https://stackoverflow.blog/2017/07/17/podcast-112-please-direct-hate-mail-jay-hanlon-%E2%84%85-stack-overflow/?cb=1" class="question-hyperlink">
+                                        <div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div>                </a>
+                                </div>
+                                <div class="bulletin-item-content">
+                                    <a href="https://stackoverflow.blog/2017/07/17/podcast-112-please-direct-hate-mail-jay-hanlon-%E2%84%85-stack-overflow/?cb=1" class="question-hyperlink">Podcast #112 – Please Direct All Hate Mail to Jay Hanlon c/o Stack Overflow…</a>
+                                </div>
+                                <br class="cbt">
+                            </div>
+                            <div class="bulletin-title">
+                                Featured on Meta
+                            </div>
+                            <hr>
+                            <div class="spacer">
+                                <div class="bulletin-item-type">
+                                    <a href="https://meta.stackoverflow.com/questions/352386/2017-moderator-election-qa-questionnaire?cb=1" class="question-hyperlink">
+                                        <div class="favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>                </a>
+                                </div>
+                                <div class="bulletin-item-content">
+                                    <a href="https://meta.stackoverflow.com/questions/352386/2017-moderator-election-qa-questionnaire?cb=1" class="question-hyperlink">2017 Moderator Election Q&amp;A - Questionnaire</a>
+                                </div>
+                                <br class="cbt">
+                            </div>
+                            <div class="spacer">
+                                <div class="bulletin-item-type">
+                                    <a href="https://meta.stackoverflow.com/questions/352065/introducing-channels-qa-for-engineering-teams?cb=1" class="question-hyperlink">
+                                        <div class="favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>                </a>
+                                </div>
+                                <div class="bulletin-item-content">
+                                    <a href="https://meta.stackoverflow.com/questions/352065/introducing-channels-qa-for-engineering-teams?cb=1" class="question-hyperlink">Introducing: Channels - Q&amp;A For Engineering Teams</a>
+                                </div>
+                                <br class="cbt">
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        var ados = ados || {}; ados.run = ados.run || [];
+                        ados.run.push(function () { ados_add_placement(22,8277,"adzerk345503651",[5,17,2221,1129,43]).setZone(45); });
+                    </script>
+                    <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk345503651"><a href="https://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NSwiYnQiOjAsImNtIjo2MTE5MjIsImNoIjoxMTc4LCJjayI6e30sImNyIjozNTk1Njc4LCJkaSI6ImVkNDU5MDdlNDQ4MjRkODZhMmY1MzRkMWQ0YmVhOTc1IiwiZG0iOjEsImZjIjo2MTQ4OTcyLCJmbCI6NjIzNTE0OSwiaXAiOiI4OS4xNzQuMjE0Ljc0Iiwia3ciOiJqc291cCx4LXVzZXItcmVnaXN0ZXJlZCx4LWNyb3NzLXNpdGUtdW5peC5zdGFja2V4Y2hhbmdlLmNvbSIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6NjE3MzcsInJ0IjoyLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5wbC8iLCJzYSI6IjMiLCJzYiI6ImktMGZlYjIyYWM1NDcyMWJhMTQiLCJzcCI6MzExMjYsInN0Ijo4Mjc3LCJ1ayI6InVlMS02YjY3M2RhMjlhZDk0MGY3YTJmYmNjNzMyNDdmZDI3YiIsInpuIjo0NSwidHMiOjE1MDA0NzgzNzYxNDMsImJmIjp0cnVlLCJwbiI6ImFkemVyazM0NTUwMzY1MSIsInVyIjoiaHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9jaGFubmVscy8_dXRtX3NvdXJjZT1zby1vd25lZCZ1dG1fbWVkaXVtPWhvdXNlLWFkJnV0bV9jYW1wYWlnbj1nZW4tY2hhbm5lbHMtYmV0YSZ1dG1fY29udGVudD1tcHUmdXRtX3Rlcm09ZGVzaWduMiJ9&amp;s=AK4UrLBo7TrrKolLLe26lQo8-jk" rel="nofollow" target="_blank" title=""><img src="https://s.zkcdn.net/Advertisers/6ec9749883e2491aa92d805307081b30.png" title="" alt="" border="0" width="300" height="250" style="display: none !important;"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li><li><label><input type="radio" value="16" name="downvoteReason">Other</label></li></ul><a href="#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position: absolute; display: none !important;" src="https://engine.adzerk.net/i.gif?e=eyJhdiI6NDE0LCJhdCI6NSwiYnQiOjAsImNtIjo2MTE5MjIsImNoIjoxMTc4LCJjayI6e30sImNyIjozNTk1Njc4LCJkaSI6ImVkNDU5MDdlNDQ4MjRkODZhMmY1MzRkMWQ0YmVhOTc1IiwiZG0iOjEsImZjIjo2MTQ4OTcyLCJmbCI6NjIzNTE0OSwiaXAiOiI4OS4xNzQuMjE0Ljc0Iiwia3ciOiJqc291cCx4LXVzZXItcmVnaXN0ZXJlZCx4LWNyb3NzLXNpdGUtdW5peC5zdGFja2V4Y2hhbmdlLmNvbSIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6NjE3MzcsInJ0IjoyLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5wbC8iLCJzYSI6IjMiLCJzYiI6ImktMGZlYjIyYWM1NDcyMWJhMTQiLCJzcCI6MzExMjYsInN0Ijo4Mjc3LCJ1ayI6InVlMS02YjY3M2RhMjlhZDk0MGY3YTJmYmNjNzMyNDdmZDI3YiIsInpuIjo0NSwidHMiOjE1MDA0NzgzNzYxNDQsImJmIjp0cnVlLCJwbiI6ImFkemVyazM0NTUwMzY1MSIsImZxIjoxfQ&amp;s=rAVOy48279_QXNJdnsaaC69tfYU"></div>
+                    <div id="hireme" class="tag-themed java tagged tex2jax_ignore clc-jobs-multi"><a class="top " href="https://stackoverflow.com/jobs" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=43r6Qz5v97krHroLVvkEMDEJzN4xnePDqRVMXn9f8l-71WaWzfjR707AiUAGToaeDQwMDfaMjAxMs5nWt7L_3MhxfycfMycD04GAHTxWiZlG9owsWYllibOZnvidC9gVyMjJwHKgWVHAyjrLFSrFEJG1ZUbwc7P7ZksB&amp;cr=10440&amp;ct=1&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%3Fmed=clc&amp;sig=6cTAqwCWyS7OLg"><span>Want a <span class="header-tag">java</span> job?</span></a><div class="middle"><ul class="jobs"><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" title="Java Developer (all levels) at Sabre Polska. Click to learn more." href="https://stackoverflow.com/jobs/135057/java-developer-all-levels-sabre-polska" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=43r6Qz5v97krHroLVvkEMDEJzN4xnePDqRVMXn9f8l-71WaWzfjR707AiUAGToaeDQwMDfaMjAxMs5nWt7L_3MhxfycfMycD04GAHTxWiZlG9owsWYllibOZnvidC9gVyMjJwHKgWVHAyjrLFSrFEJG1ZUbwc7P7ZksB&amp;cr=236767&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F135057%2Fjava-developer-all-levels-sabre-polska%3Fmed=clc&amp;sig=cHvnTQeC9kgxCQ"><div class="title">Java Developer (all levels)</div><div><span class="company">Sabre Polska</span><span class="location">Kraków, Poland</span></div><span class="post-tag highlight">java</span><span class="post-tag">hibernate</span><div></div></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=43r6Qz5v97krHroLVvkEMDEJzN4xnePDqRVMXn9f8l-71WaWzfjR707AiUAGToaeDQwMDfaMjAxMs5nWt7L_3MhxfycfMycD04GAHTxWiZlG9owsWYllibOZnvidC9gVyMjJwHKgWVHAyjrLFSrFEJG1ZUbwc7P7ZksB&amp;cr=236767&amp;ct=-1&amp;sig=BhW6EyUnqCcCEA" data-clc-meta-target="-1"><span class="clc-tooltip above-left">dismiss this job</span></a></li><li class="&quot;clc-dismissable&quot;"><div class="job-wrap"><a class="job" title="Java Developer at Accenture Poland. Click to learn more." href="https://stackoverflow.com/jobs/117359/java-developer-accenture-poland" target="_blank" data-clc-click="https://clc.stackoverflow.com/click?an=43r6Qz5v97krHroLVvkEMDEJzN4xnePDqRVMXn9f8l-71WaWzfjR707AiUAGToaeDQwMDfaMjAxMs5nWt7L_3MhxfycfMycD04GAHTxWiZlG9owsWYllibOZnvidC9gVyMjJwHKgWVHAyjrLFSrFEJG1ZUbwc7P7ZksB&amp;cr=10426&amp;ct=0&amp;url=https%3A%2F%2Fstackoverflow.com%2Fjobs%2F117359%2Fjava-developer-accenture-poland%3Fmed=clc&amp;sig=zfNQodmowS-aWQ"><div class="title">Java Developer</div><div><span class="company">Accenture Poland</span><span class="location">Kraków, Poland</span></div><span class="post-tag highlight">java</span><span class="post-tag">spring</span><div></div></a></div><a class="clc-dismiss" data-clc-click="https://clc.stackoverflow.com/click?an=43r6Qz5v97krHroLVvkEMDEJzN4xnePDqRVMXn9f8l-71WaWzfjR707AiUAGToaeDQwMDfaMjAxMs5nWt7L_3MhxfycfMycD04GAHTxWiZlG9owsWYllibOZnvidC9gVyMjJwHKgWVHAyjrLFSrFEJG1ZUbwc7P7ZksB&amp;cr=10426&amp;ct=-1&amp;sig=H8xZQ-0sSk284w" data-clc-meta-target="-1"><span class="clc-tooltip above-left">dismiss this job</span></a></li></ul></div><img src="https://clc.stackoverflow.com/impression.gif?an=43r6Qz5v97krHroLVvkEMDEJzN4xnePDqRVMXn9f8l-71WaWzfjR707AiUAGToaeDQwMDfaMjAxMs5nWt7L_3MhxfycfMycD04GAHTxWiZlG9owsWYllibOZnvidC9gVyMjJwHKgWVHAyjrLFSrFEJG1ZUbwc7P7ZksB&amp;md=448" class="impression" style="display: none;"></div>
+                    <script>
+                        window.clc_request = 'Aob42mu7ztQIcCVKABvcBQECAAAAAgAAAAM9AAAAfGpzb3VwfHgtdXNlci1yZWdpc3RlcmVkfHgtY3Jvc3Mtc2l0ZS11bml4LnN0YWNrZXhjaGFuZ2UuY29tfACsVcXq_nXjCTZo';;!function i(n){try{if("function"!=typeof[].indexOf)return;if(!window.addEventListener)return;if(!n.allowed)return;if(!RegExp(n.allowed).test(location.hostname))return;var t=window,e=t.document,c=n.wv;if(e.hidden&&c)return void e.addEventListener("visibilitychange",function t(){e.hidden||(i(n),e.removeEventListener("visibilitychange",t))});if(t.clc=t.clc||{},t.clc.init=t.clc.init||[],n.autoload&&t.clc.init.push(function(i){return i.load()}),t.clc.options){for(var o in t.clc.options)n[o]=t.clc.options[o];t.clc.options=n}else t.clc.options=n;var r=e.createElement("script");r.async=!0,r.src=n.lib,e.body.appendChild(r)}catch(i){}}.call(null, {"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=d80e98d967bf","u":"https://clc.stackoverflow.com/markup.js","azw":true,"kt":2000,"tto":true,"d":{"sb":["hireme","clc-sb"],"tlb":["careers1","clc-tlb"],"mlb":["careers3","clc-mlb"]},"h":"clc.stackoverflow.com","autoload":true,"allowed":"^(((talent\\.)?stackoverflow)|(blog\\.codinghorror)|(serverfault|askubuntu)|([^\\.]+\\.stackexchange))\\.com$","wv":true});        </script>
+
+
+                    <div class="module sidebar-linked">
+                        <h4 id="h-linked">Linked</h4>
+                        <div class="linked" data-tracker="lq=1">
+
+                            <div class="spacer">
+                                <a href="https://stackoverflow.com/q/19263772?lq=1" title="Vote score (upvotes - downvotes)">
+                                    <div class="answer-votes answered-accepted default">0</div>
+                                </a>
+                                <a href="https://stackoverflow.com/questions/19263772/why-am-i-always-getting-the-ioexception?noredirect=1&amp;lq=1" class="question-hyperlink">Why am I always getting the IOException?</a>
+                            </div>			</div>
+                    </div>
+
+                    <div class="module sidebar-related">
+                        <h4 id="h-related">Related</h4>
+                        <div class="related js-gps-related-questions" data-tracker="rq=1">
+                            <div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/6492251?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">1</div></a><a href="https://stackoverflow.com/questions/6492251/how-to-extract-plain-text-of-specified-length-from-html-using-jsoup?rq=1" class="question-hyperlink">How to extract plain text of specified length from html using Jsoup?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/8222118?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">8</div></a><a href="https://stackoverflow.com/questions/8222118/using-jsoup-to-extract-html-table-contents?rq=1" class="question-hyperlink">Using JSoup To Extract HTML Table Contents</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/8549800?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="https://stackoverflow.com/questions/8549800/how-do-i-extract-a-paragraph-from-a-website-using-jsoup?rq=1" class="question-hyperlink">How do I extract a paragraph from a website using JSoup?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/11154145?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="https://stackoverflow.com/questions/11154145/jsoup-how-to-extract-this-text?rq=1" class="question-hyperlink">jsoup how to extract this text</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/12044511?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="https://stackoverflow.com/questions/12044511/jsoup-how-to-extract-all-elements-between-a-fixed-html-tag?rq=1" class="question-hyperlink">Jsoup - how to extract all elements between a fixed html tag</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/13381125?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">1</div></a><a href="https://stackoverflow.com/questions/13381125/extracting-text-from-any-web-page-with-jsoup?rq=1" class="question-hyperlink">Extracting text from any web page with Jsoup</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/15165708?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="https://stackoverflow.com/questions/15165708/how-to-extract-specific-content-from-webpage-using-jsoup?rq=1" class="question-hyperlink">how to extract specific content from webpage using jsoup</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/18683520?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">2</div></a><a href="https://stackoverflow.com/questions/18683520/how-to-extract-color-from-span-which-is-in-p-tag-from-an-html-using-jsoup?rq=1" class="question-hyperlink">How to extract color from span which is in p tag from an html using JSOUP?</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/30350241?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">-5</div></a><a href="https://stackoverflow.com/questions/30350241/i-am-trying-to-extract-text-content-from-html-using-jsoup-bh1etwe-h1en-ge?rq=1" class="question-hyperlink">I am trying to extract text content from HTML using Jsoup. “b&lt;h1&gt;etwe&lt;/h1&gt;en” gets converted to “b etween”</a></div><div class="spacer js-gps-track"><a href="https://stackoverflow.com/q/37299762?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">1</div></a><a href="https://stackoverflow.com/questions/37299762/jsoup-how-to-parse-a-html-text-that-is-not-associated-with-any-element?rq=1" class="question-hyperlink">JSOUP: How to parse a html text that is not associated with any element</a></div>
+                        </div>
+                    </div>
+
+
+                    <div id="hot-network-questions" class="module tex2jax_ignore">
+                        <h4>
+                            <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+                                Hot Network Questions
+                            </a>
+                        </h4>
+                        <ul>
+                            <li>
+                                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="https://scifi.stackexchange.com/questions/163990/who-is-was-the-first-woman-doctor-who" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Who is/was the first woman Doctor Who?
+                            </a>
+
+                            </li>
+                            <li>
+                                <div class="favicon favicon-space" title="Space Exploration Stack Exchange"></div><a href="https://space.stackexchange.com/questions/22332/why-wont-spacex-launch-a-rocket-for-a-month" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:508 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Why won't SpaceX launch a rocket for a month?
+                            </a>
+
+                            </li>
+                            <li>
+                                <div class="favicon favicon-superuser" title="Super User"></div><a href="https://superuser.com/questions/1230421/if-my-wi-fi-speed-is-64-mbit-s-why-do-i-get-nowhere-near-it" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                If my Wi-Fi speed is 64 Mbit/s why do I get nowhere near it?
+                            </a>
+
+                            </li>
+                            <li>
+                                <div class="favicon favicon-chess" title="Chess Stack Exchange"></div><a href="https://chess.stackexchange.com/questions/18069/what-is-the-increment-in-chess" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:435 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                What is the "increment" in chess?
+                            </a>
+
+                            </li>
+                            <li>
+                                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="https://english.stackexchange.com/questions/400751/word-that-sounds-like-metal-but-means-grit-tenacity-and-perseverance" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Word that sounds like "metal" but means "grit", "tenacity", and "perseverance"
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="https://codegolf.stackexchange.com/questions/132786/double-time-is-not-double-time" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Double-time is not double time
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="https://rpg.stackexchange.com/questions/103845/can-polymorph-end-spells-that-require-the-target-to-be-humanoid" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Can Polymorph end spells that require the target to be humanoid?
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-photo" title="Photography Stack Exchange"></div><a href="https://photo.stackexchange.com/questions/91010/what-were-long-flat-point-and-shoot-film-cameras-called" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:61 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                What were long, flat point and shoot film cameras called?
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="https://codegolf.stackexchange.com/questions/133235/the-answer-to-life-the-universe-and-ascii-art" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                The answer to life, the universe, and ASCII-art
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/86289/a-believable-place-for-your-secret-lair" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                A believable place for your secret lair
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/86405/fusion-using-a-lens-to-focus-the-energy-of-a-star" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Fusion: Using a lens to focus the energy of a star
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-movies" title="Movies &amp; TV Stack Exchange"></div><a href="https://movies.stackexchange.com/questions/76502/who-is-the-third-man-that-sandor-clegane-is-referring-to" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:367 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Who is the third man that Sandor Clegane is referring to?
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-hinduism" title="Hinduism Stack Exchange"></div><a href="https://hinduism.stackexchange.com/questions/19644/does-prayer-remove-bad-deeds-of-past-lives" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:567 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Does prayer remove bad deeds of past lives?
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="https://unix.stackexchange.com/questions/379524/find-syntax-error" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                find syntax error
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="https://codegolf.stackexchange.com/questions/132558/i-double-the-source-you-double-the-output" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                I double the source, you double the output!
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/86268/cyclops-depth-perception-issues" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Cyclops - depth perception issues
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-sitecore" title="Sitecore Stack Exchange"></div><a href="https://sitecore.stackexchange.com/questions/6704/item-validator-access-already-stored-data-instead-of-newly-inputed-data" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:664 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Item validator access already stored data instead of newly inputed data
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-politics" title="Politics Stack Exchange"></div><a href="https://politics.stackexchange.com/questions/21934/why-the-negation-of-god-by-plenty-of-anarchists" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:475 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Why the negation of God by plenty of anarchists?
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-crypto" title="Cryptography Stack Exchange"></div><a href="https://crypto.stackexchange.com/questions/50228/can-deterministic-ecdsa-be-protected-against-fault-attacks" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:281 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Can deterministic ECDSA be protected against fault attacks?
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-cooking" title="Seasoned Advice"></div><a href="https://cooking.stackexchange.com/questions/83040/what-is-this-green-bulbous-leafy-vegetable" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:49 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                What is this green, bulbous, leafy vegetable?
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="https://codegolf.stackexchange.com/questions/133174/make-your-language-mostly-unusable-cops-thread" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Make your language *mostly* unusable! (Cops' thread)
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="https://academia.stackexchange.com/questions/93360/how-to-evaluate-a-book-rather-than-a-paper-on-a-scientific-subject" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                How to evaluate a book, rather than a paper, on a scientific subject?
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/86457/what-is-a-medieval-technology-method-of-underwater-enemy-detection" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                What is a medieval technology method of underwater enemy detection?
+                            </a>
+
+                            </li>
+                            <li class="dno js-hidden" style="display: list-item;">
+                                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="https://travel.stackexchange.com/questions/98306/can-a-teenage-ethiopian-legally-drink-in-other-countries-using-their-id" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                                Can a teenage Ethiopian legally drink in other countries using their ID?
+                            </a>
+
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </div>
+
+                <div id="feed-link">
+                    <div id="feed-link-text">
+                        <a href="/feeds/question/17161243" title="feed of this question and its answers">
+                            <span class="feed-icon"></span>question feed
+                        </a>
+                    </div>
+                </div>    </div>
+            <script>
+                StackExchange.ready(function(){$.get('/posts/17161243/ivc/0611');});
+            </script>
+            <noscript>
+                &lt;div&gt;&lt;img src="/posts/17161243/ivc/0611" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+            </noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+        <script>
+            $('#wmd-input').one("keypress", function() {
+                $.ajax({
+                           url: '/accounts/email-settings-form',
+                           cache: false,
+                           success: function(data) {
+                               $('#submit-button').parent().prepend(data);
+                           }
+                       });
+            });
+
+        </script>
+
+    </div>
+</div><script async="" src="https://cdn.sstatic.net/clc/clc.min.js?v=d80e98d967bf"></script>
+
+<footer id="footer" class="s-footer js-footer _short" role="contentinfo">
+    <div class="-container">
+        <div class="g-row js-sp-between">
+            <div class="-logo">
+                <a href="https://stackoverflow.com"><svg role="icon" class="svg-icon iconLogo" width="150" height="30" viewBox="0 0 150 30"><g><path d="M33.9 18.6l-1.7-.2c-1.3-.1-1.9-.6-1.9-1.6 0-1.1.8-1.8 2.4-1.8 1.1 0 2.1.3 2.8.8l1-1c-1-.8-2.3-1.1-3.8-1.1-2.3 0-3.9 1.2-3.9 3.1 0 1.8 1.1 2.7 3.2 2.9l1.8.2c1.2.1 1.8.6 1.8 1.6 0 1.3-1.1 1.9-2.8 1.9-1.3 0-2.5-.3-3.3-1.2l-1 1c1.2 1.1 2.6 1.5 4.4 1.5 2.6 0 4.3-1.2 4.3-3.2-.2-2-1.5-2.7-3.3-2.9zm13.3-4.8c-1.7 0-2.8.3-3.7 1.5l1 1c.6-.9 1.3-1.2 2.7-1.2 1.9 0 2.7.8 2.7 2.3v1h-3.2c-2.4 0-3.7 1.2-3.7 3.1 0 .8.3 1.6.8 2.2.7.7 1.5 1 3 1 1.4 0 2.2-.3 3.1-1.1v1h1.6v-7.2c-.1-2.4-1.5-3.6-4.3-3.6zm2.7 7c0 .9-.2 1.5-.5 1.8-.7.6-1.5.7-2.4.7-1.7 0-2.4-.6-2.4-1.8 0-1.2.8-1.9 2.4-1.9h3l-.1 1.2zm7.6-5.6c1 0 1.6.3 2.4 1.2l1-1c-1.1-1.2-2-1.6-3.5-1.6-2.7 0-4.7 1.8-4.7 5.5 0 3.6 2 5.5 4.7 5.5 1.5 0 2.4-.4 3.5-1.6l-1.1-1c-.8.9-1.4 1.2-2.4 1.2s-1.9-.4-2.5-1.2c-.5-.7-.7-1.5-.7-2.9 0-1.3.2-2.2.7-2.9.7-.8 1.6-1.2 2.6-1.2zm13.4-1.3H69l-4.8 4.7V9.1h-1.6v15.4h1.6v-3.9l1.9-1.9 3.6 5.8h1.9l-4.4-6.9 3.7-3.7zm7.3-.5c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.7-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7.1 1.2 0 2.2-.6 2.7zm10.8-8.2l-2.2 6.9-2.3-6.9h-2.9L87 24.6h2.2l4.1-11.1h-3zm7.6-.1c-2.9 0-4.8 2-4.8 5.7 0 4.5 2.5 5.7 5.1 5.7 2 0 3.1-.6 4.2-1.7l-1.7-1.6c-.7.7-1.3 1-2.5 1-1.6 0-2.4-1-2.4-2.5h6.9v-1.2c0-3.2-1.7-5.4-4.8-5.4zM95.8 18c0-.5.1-.8.3-1.2.3-.7.9-1.2 1.9-1.2.9 0 1.6.5 1.9 1.2.2.4.2.7.3 1.2h-4.4zm11-3.4v-1.1h-2.7v11.1h2.8v-6.7c0-1.4.9-2 1.8-2 .7 0 1 .2 1.5.7l2.1-2.1c-.8-.8-1.5-1-2.6-1-1.3-.1-2.3.4-2.9 1.1zm6.3-2.3v12.3h2.8v-8.8h2v-2.1h-2v-1.2c0-.6.3-1 1-1h1.1V9.2h-1.6c-2.3 0-3.3 1.6-3.3 3.1zm16.2 1.1c-1.6 0-2.7.6-3.4 1.4-1 1-1.3 2.3-1.3 4.3s.3 3.3 1.3 4.3c.7.7 1.8 1.4 3.4 1.4 1.6 0 2.8-.6 3.4-1.4 1-1 1.3-2.3 1.3-4.3s-.3-3.3-1.3-4.3c-.6-.8-1.8-1.4-3.4-1.4zm1.3 8.3c-.3.3-.7.5-1.3.5-.6 0-1-.2-1.3-.5-.6-.6-.6-1.6-.6-2.7 0-1.2.1-2.1.6-2.7.3-.3.7-.5 1.3-.5.6 0 1 .2 1.3.5.6.6.6 1.5.6 2.7 0 1.2 0 2.2-.6 2.7zm16.5-8.2l-1.8 6.9-2.3-6.9h-2l-2.3 6.9-1.8-6.9H134l3.4 11.1h2.3l2.3-7 2.3 7h2.3l3.4-11.1h-2.9zM122 21.2V9.1h-2.8v12.3c0 1.6 1 3.2 3.2 3.2h1.6v-2.3h-1c-.7 0-1-.4-1-1.1zm-80.7-5.6l1.4-1.4h-3v-3.5h-1.6v11.1c0 1.6.9 2.9 2.7 2.9h1.1v-1.3h-.8c-1 0-1.5-.6-1.5-1.6v-6.1h1.7v-.1z" fill="#222426"></path><path fill="#BCBBBB" d="M21 27v-8h3v11H0V19h3v8z"></path><path d="M5.402 19.101l13.561 1.96.164-2.38-13.256-2.547-.469 2.967zM7.2 12.3l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm3.4-5.9l10.2 8.5 1.7-2-10.2-8.5-1.7 2zM17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zM5 25h14v-3H5v3z" fill="#F48024"></path></g></svg></a>
+            </div>
+
+            <nav class="-nav js-category _visible" data-name="default">
+                <h5 class="-title"><a href="https://stackoverflow.com" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 15})">Stack Overflow</a></h5>
+                <ul class="-list">
+                    <li class="-item"><a href="/questions" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 16})">Questions</a></li>
+                    <li class="-item"><a href="/jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 17})">Jobs</a></li>
+                    <li class="-item"><a href="https://stackoverflow.com/jobs/directory/developer-jobs" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 11})">Developer Jobs Directory</a></li>
+                    <li class="-item"><a href="/documentation" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 18})">Documentation</a></li>
+                    <li class="-item"><a href="/help" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 3 })">Help</a></li>
+                    <li class="-item"><a onclick="StackExchange.switchMobile(&quot;on&quot;)" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 12 })">Mobile</a></li>
+                </ul>
+            </nav>
+
+            <nav class="-nav js-category _visible" data-name="default">
+                <h5 class="-title"><a href="https://www.stackoverflowbusiness.com/?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation" class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 19 })">Stack Overflow<br> Business</a></h5>
+                <ul class="-list">
+                    <li class="-item"><a href="https://www.stackoverflowbusiness.com/talent?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 20 })">Talent</a></li>
+                    <li class="-item"><a href="https://www.stackoverflowbusiness.com/advertise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 21 })">Ads</a></li>
+                    <li class="-item"><a href="https://www.stackoverflowbusiness.com/enterprise?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 22 })">Enterprise</a></li>
+                    <li class="-item"><a href="https://www.stackoverflowbusiness.com/insights?utm_source=so-footer&amp;utm_medium=referral&amp;utm_campaign=brand-activation" class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 23 })">Insights</a></li>
+                </ul>
+            </nav>
+
+            <nav class="-nav js-category _visible" data-name="default">
+                <h5 class="-title"><a class="js-gps-track" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">Company</a></h5>
+                <ul class="-list">
+                    <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 1 })" href="https://stackoverflow.com/company/about">About</a></li>
+                    <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 27 })" href="https://stackoverflow.com/company/press">Press</a></li>
+                    <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 9 })" href="https://stackoverflow.com/company/work-here">Work Here</a></li>
+                    <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 7 })" href="https://stackexchange.com/legal">Legal</a></li>
+                    <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 8 })" href="https://stackexchange.com/legal/privacy-policy">Privacy Policy</a></li>
+                    <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link: 13 })" href="https://stackoverflow.com/company/contact">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="-network g-row">
+                <a href="#" class="-back-trigger js-back"><svg role="icon" class="svg-icon iconArrowLeftAlt" width="18" height="18" viewBox="0 0 18 18"><path d="M10.582 16l1.41-1.41L6.402 9l5.59-5.59L10.582 2l-7 7z"></path></svg></a>
+                <div>
+                    <h5 class="-title"><a href="https://stackexchange.com">Stack Exchange<br> Network</a></h5>
+                    <ul class="-list">
+                        <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Technology">Technology</a></li>
+                        <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Life / Arts">Life / Arts</a></li>
+                        <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Culture / Recreation">Culture / Recreation</a></li>
+                        <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Science">Science</a></li>
+                        <li class="-item"><a href="#" class="-link _expandable js-category-trigger js-gps-track" data-gps-track="footer.click({ location: 2, link: 24 })" data-target="Other">Other</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <nav class="-nav js-category" data-name="Technology">
+                <ul class="-list">
+                    <li class="-item"><a href="//stackoverflow.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                    <li class="-item"><a href="//serverfault.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="system and network administrators">Server Fault</a></li>
+                    <li class="-item"><a href="//superuser.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="computer enthusiasts and power users">Super User</a></li>
+                    <li class="-item"><a href="//webapps.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="power users of web applications">Web Applications</a></li>
+                    <li class="-item"><a href="//askubuntu.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                    <li class="-item"><a href="//webmasters.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="pro webmasters">Webmasters</a></li>
+                    <li class="-item"><a href="//gamedev.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="professional and independent game developers">Game Development</a></li>
+                </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+            <li class="-item"><a href="//tex.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+            <li class="-item"><a href="//softwareengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="professionals, academics, and students working within the systems development life cycle">Software Engineering</a></li>
+            <li class="-item"><a href="//unix.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+            <li class="-item"><a href="//apple.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+            <li class="-item"><a href="//wordpress.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="WordPress developers and administrators">WordPress Development</a></li>
+            <li class="-item"><a href="//gis.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+            <li class="-item"><a href="//electronics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+        </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+            <li class="-item"><a href="//android.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+            <li class="-item"><a href="//security.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="information security professionals">Information Security</a></li>
+            <li class="-item"><a href="//dba.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+            <li class="-item"><a href="//drupal.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="Drupal developers and administrators">Drupal Answers</a></li>
+            <li class="-item"><a href="//sharepoint.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="SharePoint enthusiasts">SharePoint</a></li>
+            <li class="-item"><a href="//ux.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="user experience researchers and experts">User Experience</a></li>
+            <li class="-item"><a href="//datascience.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="Data science professionals, Machine Learning specialists, and those interested in learning more about the field">Data Science</a></li>
+        </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+            <li class="-item"><a href="//mathematica.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="users of Wolfram Mathematica">Mathematica</a></li>
+            <li class="-item"><a href="//salesforce.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+            <li class="-item"><a href="//expressionengine.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+            <li class="-item"><a href="//blender.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="people who use Blender to create 3D graphics, animations, or games">Blender</a></li>
+            <li class="-item"><a href="//networkengineering.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="network engineers">Network Engineering</a></li>
+            <li class="-item"><a href="//crypto.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+            <li class="-item"><a href="//codereview.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="peer programmer code reviews">Code Review</a></li>
+        </ul></nav><nav class="-nav js-category" data-name="Technology"><ul class="-list">
+            <li class="-item"><a href="//magento.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="users of the Magento e-Commerce platform">Magento</a></li>
+            <li class="-item"><a href="//softwarerecs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="people seeking specific software recommendations">Software Recommendations</a></li>
+            <li class="-item"><a href="//dsp.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+            <li class="-item"><a href="//emacs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="those using, extending or developing Emacs">Emacs</a></li>
+            <li class="-item"><a href="//raspberrypi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+            <li class="-item"><a href="//codegolf.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+            <li class="-item"><a href="//ethereum.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="users of Ethereum, the decentralized application platform and smart contract enabled blockchain">Ethereum</a></li>
+            <li class="-item">
+                <a href="https://stackexchange.com/sites#technology" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 26 })">
+                    <strong>
+                        more (27)
+                    </strong>
+                </a>
+            </li>
+        </ul>
+        </nav>
+            <nav class="-nav js-category" data-name="Life / Arts">
+                <ul class="-list">
+                    <li class="-item"><a href="//photo.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                    <li class="-item"><a href="//scifi.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                    <li class="-item"><a href="//graphicdesign.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                    <li class="-item"><a href="//movies.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                    <li class="-item"><a href="//music.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                    <li class="-item"><a href="//worldbuilding.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="writers/artists using science, geography and culture to construct imaginary worlds and settings">Worldbuilding</a></li>
+                    <li class="-item"><a href="//cooking.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                </ul></nav><nav class="-nav js-category" data-name="Life / Arts"><ul class="-list">
+            <li class="-item"><a href="//diy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="contractors and serious DIYers">Home Improvement</a></li>
+            <li class="-item"><a href="//money.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+            <li class="-item"><a href="//academia.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="academics and those enrolled in higher education">Academia</a></li>
+            <li class="-item"><a href="//law.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="legal professionals, students, and others with experience or interest in law">Law</a></li>
+            <li class="-item">
+                <a href="https://stackexchange.com/sites#lifearts" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 26 })">
+                    <strong>
+                        more (16)
+                    </strong>
+                </a>
+            </li>
+        </ul>
+        </nav>
+            <nav class="-nav js-category" data-name="Culture / Recreation">
+                <ul class="-list">
+                    <li class="-item"><a href="//english.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                    <li class="-item"><a href="//skeptics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="scientific skepticism">Skeptics</a></li>
+                    <li class="-item"><a href="//judaism.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                    <li class="-item"><a href="//travel.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="road warriors and seasoned travelers">Travel</a></li>
+                    <li class="-item"><a href="//christianity.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                    <li class="-item"><a href="//ell.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="speakers of other languages learning English">English Language Learners</a></li>
+                    <li class="-item"><a href="//japanese.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                </ul></nav><nav class="-nav js-category" data-name="Culture / Recreation"><ul class="-list">
+            <li class="-item"><a href="//gaming.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+            <li class="-item"><a href="//bicycles.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+            <li class="-item"><a href="//rpg.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+            <li class="-item"><a href="//anime.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="anime and manga fans">Anime &amp; Manga</a></li>
+            <li class="-item"><a href="//puzzling.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="those who create, solve, and study puzzles">Puzzling</a></li>
+            <li class="-item"><a href="//mechanics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+            <li class="-item">
+                <a href="https://stackexchange.com/sites#culturerecreation" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 26 })">
+                    <strong>
+                        more (32)
+                    </strong>
+                </a>
+            </li>
+        </ul>
+        </nav>
+            <nav class="-nav js-category" data-name="Science">
+                <ul class="-list">
+                    <li class="-item"><a href="//mathoverflow.net" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="professional mathematicians">MathOverflow</a></li>
+                    <li class="-item"><a href="//math.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                    <li class="-item"><a href="//stats.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                    <li class="-item"><a href="//cstheory.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                    <li class="-item"><a href="//physics.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="active researchers, academics and students of physics">Physics</a></li>
+                    <li class="-item"><a href="//chemistry.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="scientists, academics, teachers and students">Chemistry</a></li>
+                    <li class="-item"><a href="//biology.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="biology researchers, academics, and students">Biology</a></li>
+                </ul></nav><nav class="-nav js-category" data-name="Science"><ul class="-list">
+            <li class="-item"><a href="//cs.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+            <li class="-item"><a href="//philosophy.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+            <li class="-item">
+                <a href="https://stackexchange.com/sites#science" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 26 })">
+                    <strong>
+                        more (10)
+                    </strong>
+                </a>
+            </li>
+        </ul>
+        </nav>
+            <nav class="-nav js-category" data-name="Other">
+                <ul class="-list">
+                    <li class="-item"><a href="//meta.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                    <li class="-item"><a href="//stackapps.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                    <li class="-item"><a href="https://api.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="programmatic interaction with Stack Exchange sites">API</a></li>
+                    <li class="-item"><a href="https://data.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="querying Stack Exchange data using SQL">Data</a></li>
+                    <li class="-item"><a href="//area51.stackexchange.com" class="-link js-gps-track" data-gps-track="footer.click({ location: 29, link: 25 })" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                </ul>
+            </nav>
+            <div class="-copyright text-right">
+                <div class="g-column jc-sp-between">
+                    <ul class="-list">
+                        <li class="-item"><a class="js-gps-track -link" data-gps-track="footer.click({ location: 2, link:4 })" href="https://stackoverflow.blog?blb=1">Blog</a></li>
+                        <li class="-item"><a href="https://www.facebook.com/officialstackoverflow/" class="-link">Facebook</a></li>
+                        <li class="-item"><a href="https://twitter.com/stackoverflow" class="-link">Twitter</a></li>
+                        <li class="-item"><a href="https://linkedin.com/company/stack-overflow" class="-link">LinkedIn</a></li>
+                    </ul>
+
+                    <div>
+                        <p>
+                            site design / logo © 2017 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a>
+                            with <a href="https://stackoverflow.blog/2009/06/25/attribution-required/" rel="license">attribution required</a>.
+                            <span id="svnrev">rev 2017.7.19.1288</span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+<noscript>
+    &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled
+    &lt;img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;
+    &lt;/div&gt;
+</noscript>
+<script>var z=document.createElement("script");z.type="text/javascript",z.async=!0,z.src="https://static.adzerk.net/ados.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(z,s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+
+
+    ados.run.push(function () {
+        setTimeout(function () { $("#adzerk-user-match").remove(); }, window.AUMIframeDone ? 0 : 2000);
+        ados_setKeywords('jsoup,x-user-registered,x-cross-site-unix.stackexchange.com');; ados_load();
+    });
+
+</script>
+
+<script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-5620270-1', {'userId': '4859248' });
+    ga('create', 'UA-5620270-59', {name: 'pageData', sampleRate: 5, userId: '4859248' });
+    ga('set', 'dimension1', '4859248');
+    ga('pageData.set', 'dimension1', '4859248');
+    ga('set', 'dimension2', '|jsoup|');
+    ga('pageData.set', 'dimension2', '|jsoup|');
+    ga('send', 'pageview');
+    ga('pageData.send', 'pageview');
+    var _qevents = _qevents || [],
+        _comscore = _comscore || [];
+    (function () {
+        var ssl='https:'==document.location.protocol,
+            s=document.getElementsByTagName('script')[0],
+            qc=document.createElement('script');
+        qc.async = true;
+        qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+        s.parentNode.insertBefore(qc, s);
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+        var sc=document.createElement('script');
+        sc.async=true;
+        sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+        s.parentNode.insertBefore(sc, s);
+        _comscore.push({ c1: "2", c2: "17440561" });
+    })();
+
+</script>
+
+
+<script type="text/javascript">
+
+    (function(appendChild) {
+        Node.prototype.appendChild = function() {
+            var parent = this;
+            var newNode = arguments[0];
+            if (parent.nodeName === 'HEAD'
+                && newNode
+                && newNode.nodeName === 'SCRIPT'
+                && newNode.src) {
+
+                window.setTimeout(function() {
+                    var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                    var service = result[1];
+                    if (service) {
+                        if (service === 'Autocompletion') service =  2;
+                        else if (service === 'Place') service = 1;
+                        else service = 0;
+                        StackExchange.using('gps', function() {
+                            StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                        });
+                    }
+                }, 0);
+            }
+            return appendChild.apply(this, arguments);
+        };
+    })(Node.prototype.appendChild);
+</script>
+
+
+</body></html>
